@@ -54,7 +54,7 @@ jobs:
         with:        
           repository: ldcamachoc/multi-docker-git-actions
           context: ./client
-          file: ./Dockerfile       
+          file: Dockerfile       
           tags: ldcamachoc/multi-docker-client:1.0.0,ldcamachoc/multi-docker-client:latest
           push: true      
       #AWS
