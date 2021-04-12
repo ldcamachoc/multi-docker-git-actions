@@ -56,7 +56,7 @@ jobs:
           context: ./client   
           tags: ldcamachoc/multi-docker-client:1.0.0,ldcamachoc/multi-docker-client:latest
           push: true
-       - 
+      - 
         name: Build nginx image and push Docker image
         if:  ${{ success() }}
         id: docker_build_nginx
@@ -66,7 +66,7 @@ jobs:
           context: ./nginx   
           tags: ldcamachoc/multi-nginx-client:1.0.0,ldcamachoc/multi-nginx-client:latest
           push: true
-       - 
+      - 
         name: Build server image and push Docker image
         if:  ${{ success() }}
         id: docker_build_server
@@ -76,7 +76,7 @@ jobs:
           context: ./server   
           tags: ldcamachoc/multi-docker-server:1.0.0,ldcamachoc/multi-docker-server:latest
           push: true      
-       - 
+      - 
         name: Build worker image and push Docker image
         if:  ${{ success() }}
         id: docker_build_worker
