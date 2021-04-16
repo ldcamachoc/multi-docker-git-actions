@@ -88,22 +88,11 @@ jobs:
           push: true            
             
       #AWS
-      # - 
-      #   name: Generate deployment package
-      #   if: success()
-      #   run: zip -r deploy.zip ./* -x "**node_modules**"
-     
-      # - name: Deploy to EB
-      #   if: success()
-      #   uses: einaregilsson/beanstalk-deploy@v16
-      #   with:
-      #     aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     application_name: docker-react-app-5  
-      #     environment_name: Dockerreactapp5-env
-      #     version_label: 1
-      #     region: us-east-1
-      #     deployment_package: deploy.zip
+      - 
+        name: Generate deployment package
+        if: ${{ success() }}
+        run: zip -r deploy.zip ./Dockerrun.aws.json
+      
      
       - name: Get Timestamp
         uses: gerred/actions/current-time@master
@@ -122,7 +111,7 @@ jobs:
         if:  ${{ success() }}
         run: |
           sudo npm install -g beanstalk-deploy --unsafe-perm
-          sudo AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID}} AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY}} beanstalk-deploy "multi-docker-app" "Multidockerapp-env" "dockerAwsFile-${{ steps.format-time.outputs.replaced }}" "us-east-1" Dockerrun.aws.json
+          sudo AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID}} AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY}} beanstalk-deploy "multi-docker-app" "Multidockerapp-env" "deploy-${{ steps.format-time.outputs.replaced }}" "us-east-1" deploy.zip
 
 
       # - name: Install Dependencies & Deploy to AWS
