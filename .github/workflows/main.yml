@@ -122,7 +122,7 @@ jobs:
         if:  ${{ success() }}
         run: |
           sudo npm install -g beanstalk-deploy --unsafe-perm
-          sudo AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID}} AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY}} beanstalk-deploy "multi-docker-app" "Multidockerapp-env" "Dockerrun.aws-${{ steps.format-time.outputs.replaced }}.json" "us-east-1" Dockerrun.aws.json
+          sudo AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID}} AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY}} beanstalk-deploy "multi-docker-app" "Multidockerapp-env" "Dockerrun.aws-${{ steps.format-time.outputs.replaced }}" "us-east-1" Dockerrun.aws.json
 
 
       # - name: Install Dependencies & Deploy to AWS
